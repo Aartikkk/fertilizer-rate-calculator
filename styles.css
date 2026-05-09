@@ -124,11 +124,7 @@ body {
   background: linear-gradient(135deg, rgba(255,255,255,0.18), transparent);
 }
 
-.header-badge-text {
-  font-size: 1.05rem;
-  font-weight: 900;
-  letter-spacing: -0.5px;
-  color: white;
+.header-badge svg {
   position: relative;
   z-index: 1;
 }
