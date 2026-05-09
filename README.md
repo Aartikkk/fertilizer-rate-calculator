@@ -1,4 +1,4 @@
-# EGROW Fertilizer Application Rate Calculator
+# Fertilizer Application Rate Calculator
 
 A web-based calculator for determining fertilizer application rates per cone in greenhouse and field experiments. Built for **Dr. Haydee Laza's Lab** at the Texas Tech University Department of Plant and Soil Science.
 
