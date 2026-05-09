@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EGROW Fertilizer Application Rate Calculator — Texas Tech University</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════
+     HEADER
+═══════════════════════════════════════════ -->
+<header class="site-header">
+  <div class="header-inner">
+    <div class="header-badge" aria-hidden="true">
+      <span class="header-badge-text">EG</span>
+    </div>
+    <div>
+      <h1 class="header-title"><em>EGROW</em> Fertilizer Application Rate Calculator</h1>
+      <p class="header-subtitle">Texas Tech University &mdash; Department of Plant and Soil Science</p>
+    </div>
+  </div>
+</header>
+
+<!-- ═══════════════════════════════════════════
+     MAIN
+═══════════════════════════════════════════ -->
+<main class="page-main">
+
+  <!-- Segmented tab control -->
+  <div class="tab-control" role="tablist" aria-label="Fertilizer calculator type">
+
+    <button class="tab-btn active" data-tab="inorganic"
+            role="tab" aria-selected="true" aria-controls="panel-inorganic">
+      <!-- Flask icon -->
+      <svg class="tab-icon" width="16" height="16" viewBox="0 0 24 24" fill="none"
+           stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+           aria-hidden="true">
+        <path d="M9 3h6v7l3.5 6.5A2 2 0 0 1 17 19H7a2 2 0 0 1-1.5-2.5L9 10V3z"/>
+        <line x1="6" y1="3" x2="18" y2="3"/>
+      </svg>
+      <span class="tab-label">Inorganic (UAN 32-0-0)</span>
+      <span class="tab-label-short">Inorganic</span>
+    </button>
+
+    <button class="tab-btn" data-tab="biosolids"
+            role="tab" aria-selected="false" aria-controls="panel-biosolids">
+      <!-- Leaf icon -->
+      <svg class="tab-icon" width="16" height="16" viewBox="0 0 24 24" fill="none"
+           stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+           aria-hidden="true">
+        <path d="M11 20A7 7 0 0 1 4 13c0-3.9 3.1-7 7-7h1V3s4 1 6 5c1 2 .5 5-.5 7-1.2 2.4-3.5 5-6.5 5z"/>
+        <path d="M11 20c0-4 1-7 4-9"/>
+      </svg>
+      <span class="tab-label">Biosolids</span>
+      <span class="tab-label-short">Biosolids</span>
+    </button>
+
+    <button class="tab-btn" data-tab="egrow"
+            role="tab" aria-selected="false" aria-controls="panel-egrow">
+      <!-- Droplet icon -->
+      <svg class="tab-icon" width="16" height="16" viewBox="0 0 24 24" fill="none"
+           stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+           aria-hidden="true">
+        <path d="M12 2C6.5 9.5 4 13.5 4 17a8 8 0 0 0 16 0c0-3.5-2.5-7.5-8-15z"/>
+      </svg>
+      <span class="tab-label">E-GROW Slurry</span>
+      <span class="tab-label-short">E-GROW</span>
+    </button>
+
+  </div><!-- /tab-control -->
+
+
+  <!-- ─────────────────────────────────────────
+       PANEL 1 — INORGANIC (UAN 32-0-0)
+  ───────────────────────────────────────────── -->
+  <section class="tab-panel active" id="panel-inorganic" data-panel="inorganic"
+           role="tabpanel" aria-labelledby="tab-inorganic">
+
+    <div class="panel-accent-bar" aria-hidden="true"></div>
+
+    <div class="panel-body">
+      <div class="panel-grid">
+
+        <!-- LEFT: Inputs -->
+        <div>
+          <div class="col-header">
+            <span class="col-header-dot" aria-hidden="true"></span>
+            Input Parameters
+          </div>
+
+          <div class="inputs-section">
+
+            <div class="input-group">
+              <label class="field-label" for="ino-totalNRate">
+                Total N rate
+                <span class="field-unit">(lb N / acre)</span>
+              </label>
+              <input type="number" id="ino-totalNRate" value="120" min="0" step="1">
+            </div>
+
+            <div class="input-group">
+              <label class="field-label" for="ino-fractionApplied">
+                Fraction applied at planting
+                <span class="field-unit">(0 &ndash; 1)</span>
+              </label>
+              <input type="number" id="ino-fractionApplied" value="0.33333"
+                     min="0.0001" max="1" step="0.00001">
+              <p class="field-note">Default: 1/3 &asymp; 0.33333</p>
+            </div>
+
+            <div class="input-group">
+              <label class="field-label" for="ino-nContentPerGallon">
+                N content of UAN 32-0-0
+                <span class="field-unit">(lb N / gallon)</span>
+              </label>
+              <input type="number" id="ino-nContentPerGallon" value="3.54"
+                     min="0.001" step="0.01">
+            </div>
+
+            <div class="input-group">
+              <label class="field-label" for="ino-dilutionRatio">
+                Dilution ratio
+                <span class="field-unit">(1 : X)</span>
+              </label>
+              <input type="number" id="ino-dilutionRatio" value="250" min="1" step="1">
+              <p class="field-note">e.g. 250 = 1 part UAN per 250 parts water</p>
+            </div>
+
+            <div class="input-group">
+              <label class="field-label" for="ino-coneArea">
+                Cone area
+                <span class="field-unit">(sq ft)</span>
+              </label>
+              <input type="number" id="ino-coneArea" value="0.0135"
+                     min="0.0001" step="0.0001">
+            </div>
+
+          </div><!-- /inputs-section -->
+
+          <button class="btn-reset" data-reset="inorganic" type="button">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                 stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <polyline points="1 4 1 10 7 10"/>
+              <path d="M3.51 15a9 9 0 1 0 .49-4.95"/>
+            </svg>
+            Reset to defaults
+          </button>
+
+          <div class="conversions-box">
+            <span class="conversions-box-label">Unit conversions used</span>
+            1 acre = 43,560 sq ft &nbsp;&bull;&nbsp;
+            1 gallon = 3.78 L &nbsp;&bull;&nbsp;
+            1 L = 1,000 mL
+          </div>
+        </div>
+
+        <!-- RIGHT: Results -->
+        <div>
+          <div class="col-header">
+            <span class="col-header-dot" aria-hidden="true"></span>
+            Result
+          </div>
+
+          <div class="result-card" data-accent="inorganic">
+            <div class="result-eyebrow">Application Volume per Cone</div>
+            <div class="result-number" id="ino-result-val">&mdash;</div>
+            <div class="result-unit-badge">mL / cone</div>
+          </div>
+
+          <button class="breakdown-toggle" id="ino-bd-toggle" type="button"
+                  aria-expanded="false" aria-controls="ino-bd-body">
+            Calculation Breakdown
+            <svg class="chevron-icon" width="14" height="14" viewBox="0 0 24 24" fill="none"
+                 stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                 stroke-linejoin="round" aria-hidden="true">
+              <polyline points="6 9 12 15 18 9"/>
+            </svg>
+          </button>
+          <div class="breakdown-body" id="ino-bd-body"
+               role="region" aria-label="Inorganic calculation steps"></div>
+
+        </div>
+      </div><!-- /panel-grid -->
+    </div><!-- /panel-body -->
+  </section>
+
+
+  <!-- ─────────────────────────────────────────
+       PANEL 2 — BIOSOLIDS
+  ───────────────────────────────────────────── -->
+  <section class="tab-panel" id="panel-biosolids" data-panel="biosolids"
+           role="tabpanel" aria-labelledby="tab-biosolids">
+
+    <div class="panel-accent-bar" aria-hidden="true"></div>
+
+    <div class="panel-body">
+      <div class="panel-grid">
+
+        <!-- LEFT: Inputs -->
+        <div>
+          <div class="col-header">
+            <span class="col-header-dot" aria-hidden="true"></span>
+            Input Parameters
+          </div>
+
+          <div class="inputs-section">
+
+            <div class="input-group">
+              <label class="field-label" for="bio-totalNRate">
+                Total N rate
+                <span class="field-unit">(lb N / acre)</span>
+              </label>
+              <input type="number" id="bio-totalNRate" value="120" min="0" step="1">
+            </div>
+
+            <div class="input-group">
+              <label class="field-label" for="bio-nContentPercent">
+                N content in biosolids
+                <span class="field-unit">(%)</span>
+              </label>
+              <input type="number" id="bio-nContentPercent" value="3.776"
+                     min="0.001" max="100" step="0.001">
+            </div>
+
+            <div class="input-group">
+              <label class="field-label" for="bio-mineralizationRate">
+                N mineralization rate &mdash; Year 1
+                <span class="field-unit">(%)</span>
+              </label>
+              <input type="number" id="bio-mineralizationRate" value="30"
+                     min="0.1" max="100" step="1">
+            </div>
+
+            <div class="input-group">
+              <label class="field-label" for="bio-biosolidFraction">
+                Biosolid fraction
+                <span class="field-unit">(%)</span>
+              </label>
+              <input type="number" id="bio-biosolidFraction" value="95"
+                     min="0.1" max="100" step="1">
+              <p class="field-note">Biosolids are 95% bio-solid by weight (default)</p>
+            </div>
+
+            <div class="input-group">
+              <label class="field-label" for="bio-nAppliedFraction">
+                Fraction of total N applied
+                <span class="field-unit">(0 &ndash; 1)</span>
+              </label>
+              <input type="number" id="bio-nAppliedFraction" value="1.0"
+                     min="0.001" max="1" step="0.01">
+              <p class="field-note">Default: 1.0 = 100% applied at planting</p>
+            </div>
+
+            <div class="input-group">
+              <label class="field-label" for="bio-coneArea">
+                Cone area
+                <span class="field-unit">(sq ft)</span>
+              </label>
+              <input type="number" id="bio-coneArea" value="0.0135"
+                     min="0.0001" step="0.0001">
+            </div>
+
+          </div><!-- /inputs-section -->
+
+          <button class="btn-reset" data-reset="biosolids" type="button">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                 stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <polyline points="1 4 1 10 7 10"/>
+              <path d="M3.51 15a9 9 0 1 0 .49-4.95"/>
+            </svg>
+            Reset to defaults
+          </button>
+
+          <div class="conversions-box">
+            <span class="conversions-box-label">Unit conversions used</span>
+            1 acre = 43,560 sq ft &nbsp;&bull;&nbsp;
+            1 ton = 2,000 lb &nbsp;&bull;&nbsp;
+            1 ton = 907,185 g
+          </div>
+        </div>
+
+        <!-- RIGHT: Results -->
+        <div>
+          <div class="col-header">
+            <span class="col-header-dot" aria-hidden="true"></span>
+            Result
+          </div>
+
+          <div class="result-card" data-accent="biosolids">
+            <div class="result-eyebrow">Application Mass per Cone</div>
+            <div class="result-number" id="bio-result-val">&mdash;</div>
+            <div class="result-unit-badge">grams of biosolid / cone</div>
+          </div>
+
+          <button class="breakdown-toggle" id="bio-bd-toggle" type="button"
+                  aria-expanded="false" aria-controls="bio-bd-body">
+            Calculation Breakdown
+            <svg class="chevron-icon" width="14" height="14" viewBox="0 0 24 24" fill="none"
+                 stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                 stroke-linejoin="round" aria-hidden="true">
+              <polyline points="6 9 12 15 18 9"/>
+            </svg>
+          </button>
+          <div class="breakdown-body" id="bio-bd-body"
+               role="region" aria-label="Biosolids calculation steps"></div>
+
+        </div>
+      </div><!-- /panel-grid -->
+    </div><!-- /panel-body -->
+  </section>
+
+
+  <!-- ─────────────────────────────────────────
+       PANEL 3 — E-GROW SLURRY
+  ───────────────────────────────────────────── -->
+  <section class="tab-panel" id="panel-egrow" data-panel="egrow"
+           role="tabpanel" aria-labelledby="tab-egrow">
+
+    <div class="panel-accent-bar" aria-hidden="true"></div>
+
+    <div class="panel-body">
+      <div class="panel-grid">
+
+        <!-- LEFT: Inputs -->
+        <div>
+          <div class="col-header">
+            <span class="col-header-dot" aria-hidden="true"></span>
+            Input Parameters
+          </div>
+
+          <div class="inputs-section">
+
+            <div class="input-group">
+              <label class="field-label" for="eg-totalNRate">
+                Total N rate
+                <span class="field-unit">(lb N / acre)</span>
+              </label>
+              <input type="number" id="eg-totalNRate" value="120" min="0" step="1">
+            </div>
+
+            <div class="input-group">
+              <label class="field-label" for="eg-totalSlurryN">
+                Total slurry N &mdash; Kjeldahl
+                <span class="field-unit">(mg / L)</span>
+              </label>
+              <input type="number" id="eg-totalSlurryN" value="45600" min="0.1" step="1">
+            </div>
+
+            <div class="input-group">
+              <label class="field-label" for="eg-ammoniaContent">
+                Total ammonia content (water fraction)
+                <span class="field-unit">(mg / L)</span>
+              </label>
+              <input type="number" id="eg-ammoniaContent" value="214" min="0" step="1">
+              <p class="field-note">Must be &le; total slurry N</p>
+            </div>
+
+            <div class="input-group">
+              <label class="field-label" for="eg-mineralizationRate">
+                N mineralization rate &mdash; Year 1
+                <span class="field-unit">(%)</span>
+              </label>
+              <input type="number" id="eg-mineralizationRate" value="40"
+                     min="0.1" max="100" step="1">
+            </div>
+
+            <div class="input-group">
+              <label class="field-label" for="eg-nContentBiosolid">
+                N content of biosolid fraction
+                <span class="field-unit">(%)</span>
+              </label>
+              <input type="number" id="eg-nContentBiosolid" value="6"
+                     min="0.001" max="100" step="0.1">
+            </div>
+
+            <div class="input-group">
+              <label class="field-label" for="eg-coneArea">
+                Cone area
+                <span class="field-unit">(sq ft)</span>
+              </label>
+              <input type="number" id="eg-coneArea" value="0.0135"
+                     min="0.0001" step="0.0001">
+            </div>
+
+          </div><!-- /inputs-section -->
+
+          <button class="btn-reset" data-reset="egrow" type="button">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                 stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <polyline points="1 4 1 10 7 10"/>
+              <path d="M3.51 15a9 9 0 1 0 .49-4.95"/>
+            </svg>
+            Reset to defaults
+          </button>
+
+          <div class="conversions-box">
+            <span class="conversions-box-label">Conversion constants (fixed)</span>
+            1 lb = 453,592 mg &nbsp;&bull;&nbsp;
+            1 acre = 43,560 sq ft &nbsp;&bull;&nbsp;
+            1 L = 1,000 mL
+          </div>
+        </div>
+
+        <!-- RIGHT: Results -->
+        <div>
+          <div class="col-header">
+            <span class="col-header-dot" aria-hidden="true"></span>
+            Result
+          </div>
+
+          <div class="result-card" data-accent="egrow">
+            <div class="result-eyebrow">Application Volume per Cone</div>
+            <div class="result-number" id="eg-result-val">&mdash;</div>
+            <div class="result-unit-badge">mL / cone</div>
+          </div>
+
+          <button class="breakdown-toggle" id="eg-bd-toggle" type="button"
+                  aria-expanded="false" aria-controls="eg-bd-body">
+            Calculation Breakdown
+            <svg class="chevron-icon" width="14" height="14" viewBox="0 0 24 24" fill="none"
+                 stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                 stroke-linejoin="round" aria-hidden="true">
+              <polyline points="6 9 12 15 18 9"/>
+            </svg>
+          </button>
+          <div class="breakdown-body" id="eg-bd-body"
+               role="region" aria-label="E-GROW slurry calculation steps"></div>
+
+        </div>
+      </div><!-- /panel-grid -->
+    </div><!-- /panel-body -->
+  </section>
+
+</main><!-- /page-main -->
+
+
+<!-- ═══════════════════════════════════════════
+     FOOTER
+═══════════════════════════════════════════ -->
+<footer class="site-footer">
+  Developed for <strong>Dr. Haydee Laza&rsquo;s Lab</strong>
+  &nbsp;&bull;&nbsp;
+  Texas Tech University
+</footer>
+
+<script src="app.js"></script>
+</body>
+</html>
