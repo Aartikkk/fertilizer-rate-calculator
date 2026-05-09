@@ -62,8 +62,8 @@ No frameworks, no build tools, no dependencies. Pure HTML, CSS, and vanilla Java
 Just open `index.html` in any modern browser. No server needed.
 
 ```bash
-git clone https://github.com/Aartikkk/egrow-calculator.git
-cd egrow-calculator
+git clone https://github.com/ttu-laza-lab/fertilizer-rate-calculator.git
+cd fertilizer-rate-calculator
 # open index.html in your browser
 ```
 
