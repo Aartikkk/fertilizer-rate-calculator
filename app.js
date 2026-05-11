@@ -1,6 +1,61 @@
 'use strict';
 
 /* ═══════════════════════════════════════════════
+   UNIT SYSTEM
+═══════════════════════════════════════════════ */
+let currentUnit = 'acre'; // 'acre' | 'ha'
+
+function unitConfig() {
+  if (currentUnit === 'ha') {
+    return {
+      // Multipliers to convert user input → internal lb/acre & sq ft
+      rateFactor: 0.892179,  // kg/ha → lb/acre
+      areaFactor: 10.7639,   // sq m  → sq ft
+      areaPerUnit: 10000,    // sq m / ha
+      massPerUnit: 1000000,  // mg / kg
+      rateLabel:   'kg N / ha',
+      areaLabel:   'sq m',
+      areaConvText: '1 ha = 10,000 sq m',
+      inoConvBox:  '1 ha = 10,000 sq m &nbsp;&bull;&nbsp; 1 gallon = 3.78 L &nbsp;&bull;&nbsp; 1 L = 1,000 mL',
+      bioConvBox:  '1 ha = 10,000 sq m &nbsp;&bull;&nbsp; 1 ton = 2,000 lb &nbsp;&bull;&nbsp; 1 ton = 907,185 g',
+      egConvBox:   '1 kg = 1,000,000 mg &nbsp;&bull;&nbsp; 1 ha = 10,000 sq m &nbsp;&bull;&nbsp; 1 L = 1,000 mL',
+      defaultRate: 134.5,    // 120 lb/acre in kg/ha
+      defaultArea: 0.001254, // 0.0135 sq ft in sq m
+    };
+  }
+  return {
+    rateFactor: 1,
+    areaFactor: 1,
+    areaPerUnit: 43560,
+    massPerUnit: 453592,
+    rateLabel:   'lb N / acre',
+    areaLabel:   'sq ft',
+    areaConvText: '1 acre = 43,560 sq ft',
+    inoConvBox:  '1 acre = 43,560 sq ft &nbsp;&bull;&nbsp; 1 gallon = 3.78 L &nbsp;&bull;&nbsp; 1 L = 1,000 mL',
+    bioConvBox:  '1 acre = 43,560 sq ft &nbsp;&bull;&nbsp; 1 ton = 2,000 lb &nbsp;&bull;&nbsp; 1 ton = 907,185 g',
+    egConvBox:   '1 lb = 453,592 mg &nbsp;&bull;&nbsp; 1 acre = 43,560 sq ft &nbsp;&bull;&nbsp; 1 L = 1,000 mL',
+    defaultRate: 120,
+    defaultArea: 0.0135,
+  };
+}
+
+function updateUnitLabels() {
+  const u = unitConfig();
+  document.querySelectorAll('[data-unitlabel="rate"]').forEach(el => {
+    el.textContent = `(${u.rateLabel})`;
+  });
+  document.querySelectorAll('[data-unitlabel="area"]').forEach(el => {
+    el.textContent = `(${u.areaLabel})`;
+  });
+  const inoBox = document.getElementById('ino-conv-box');
+  const bioBox = document.getElementById('bio-conv-box');
+  const egBox  = document.getElementById('eg-conv-box');
+  if (inoBox) inoBox.innerHTML = `<span class="conversions-box-label">Unit conversions used</span>${u.inoConvBox}`;
+  if (bioBox) bioBox.innerHTML = `<span class="conversions-box-label">Unit conversions used</span>${u.bioConvBox}`;
+  if (egBox)  egBox.innerHTML  = `<span class="conversions-box-label">Conversion constants (fixed)</span>${u.egConvBox}`;
+}
+
+/* ═══════════════════════════════════════════════
    DEFAULTS
 ═══════════════════════════════════════════════ */
 const DEFAULTS = {
@@ -121,11 +176,16 @@ function calcInorganic() {
     return;
   }
 
-  const totalNRate        = val('ino-totalNRate');
-  const fractionApplied   = val('ino-fractionApplied');
+  const u               = unitConfig();
+  const totalNRate_in   = val('ino-totalNRate');
+  const fractionApplied = val('ino-fractionApplied');
   const nContentPerGallon = val('ino-nContentPerGallon');
-  const dilutionRatio     = val('ino-dilutionRatio');
-  const coneArea          = val('ino-coneArea');
+  const dilutionRatio   = val('ino-dilutionRatio');
+  const coneArea_in     = val('ino-coneArea');
+
+  // Convert to internal units (lb/acre, sq ft)
+  const totalNRate = totalNRate_in * u.rateFactor;
+  const coneArea   = coneArea_in   * u.areaFactor;
 
   const nAppliedAtPlanting = totalNRate * fractionApplied;
   const nPerSqFt           = nAppliedAtPlanting / 43560;
@@ -139,28 +199,28 @@ function calcInorganic() {
 
   el('ino-bd-body').innerHTML = [
     makeStep(1, 'N applied at planting',
-      `${totalNRate} lb N/acre &times; ${fractionApplied}`,
-      sigFmt(nAppliedAtPlanting), 'lb N / acre'),
+      `${totalNRate_in} ${u.rateLabel} &times; ${fractionApplied}`,
+      sigFmt(totalNRate_in * fractionApplied), u.rateLabel),
 
-    makeStep(2, 'N per square foot',
-      `${sigFmt(nAppliedAtPlanting)} &divide; 43,560 sq ft/acre`,
-      sigFmt(nPerSqFt), 'lb N / sq ft'),
+    makeStep(2, `N per ${u.areaLabel}`,
+      `${sigFmt(totalNRate_in * fractionApplied)} &divide; ${u.areaPerUnit.toLocaleString()} ${u.areaLabel}/${currentUnit}`,
+      sigFmt(nPerSqFt), `lb N / sq ft`),
 
-    makeStep(3, 'N content per liter (undiluted)',
+    makeStep(3, 'Fertilizer N content per liter (undiluted)',
       `${nContentPerGallon} lb N/gal &divide; 3.78 L/gal`,
       sigFmt(nContentPerLiter), 'lb N / L'),
 
-    makeStep(4, `N content per liter (diluted 1&thinsp;:&thinsp;${dilutionRatio})`,
+    makeStep(4, `Fertilizer N content per liter (diluted 1&thinsp;:&thinsp;${dilutionRatio})`,
       `${sigFmt(nContentPerLiter)} &divide; ${dilutionRatio}`,
       sigFmt(nContentDiluted), 'lb N / L'),
 
-    makeStep(5, 'N needed per cone',
-      `${coneArea} sq ft &times; ${sigFmt(nPerSqFt)} lb N/sq ft`,
-      sigFmt(nPerCone), 'lb N / cone'),
+    makeStep(5, `N needed per application area`,
+      `${coneArea_in} ${u.areaLabel} &times; ${sigFmt(nPerSqFt)} lb N/sq ft`,
+      sigFmt(nPerCone), 'lb N / application area'),
 
-    makeStep(6, 'Application volume per cone',
+    makeStep(6, 'Application volume',
       `(${sigFmt(nPerCone)} &divide; ${sigFmt(nContentDiluted)}) &times; 1,000 mL/L`,
-      fixedFmt(appVolume_mL, 4), 'mL / cone'),
+      fixedFmt(appVolume_mL, 4), 'mL / application area'),
   ].join('');
 }
 
@@ -187,12 +247,17 @@ function calcBiosolids() {
     return;
   }
 
-  const totalNRate         = val('bio-totalNRate');
+  const u                  = unitConfig();
+  const totalNRate_in      = val('bio-totalNRate');
   const nContentPercent    = val('bio-nContentPercent');
   const mineralizationRate = val('bio-mineralizationRate');
   const biosolidFraction   = val('bio-biosolidFraction');
   const nAppliedFraction   = val('bio-nAppliedFraction');
-  const coneArea           = val('bio-coneArea');
+  const coneArea_in        = val('bio-coneArea');
+
+  // Convert to internal units (lb/acre, sq ft)
+  const totalNRate = totalNRate_in * u.rateFactor;
+  const coneArea   = coneArea_in   * u.areaFactor;
 
   const nContentDecimal      = nContentPercent / 100;
   const lbNPerTon            = nContentDecimal * 2000;
@@ -209,7 +274,7 @@ function calcBiosolids() {
   flashResult('bio-result-val');
 
   el('bio-bd-body').innerHTML = [
-    makeStep(1, 'N content (decimal)',
+    makeStep(1, 'Fertilizer N content (decimal)',
       `${nContentPercent}% &divide; 100`,
       sigFmt(nContentDecimal), '(dimensionless)'),
 
@@ -229,25 +294,25 @@ function calcBiosolids() {
       `${sigFmt(bioavailableNPerTon)} &divide; 907,185 g/ton`,
       sigFmt(bioavailableNPerGram), 'lb N / g'),
 
-    makeStep(6, 'N applied per acre',
-      `${totalNRate} &times; ${nAppliedFraction}`,
-      sigFmt(nApplied), 'lb N / acre'),
+    makeStep(6, `N applied per ${currentUnit}`,
+      `${totalNRate_in} &times; ${nAppliedFraction}`,
+      sigFmt(totalNRate_in * nAppliedFraction), u.rateLabel),
 
-    makeStep(7, 'N per square foot',
-      `${sigFmt(nApplied)} &divide; 43,560 sq ft/acre`,
+    makeStep(7, `N per ${u.areaLabel}`,
+      `${sigFmt(totalNRate * nAppliedFraction)} &divide; 43,560 sq ft/acre`,
       sigFmt(nPerSqFt), 'lb N / sq ft'),
 
-    makeStep(8, 'N needed per cone',
-      `${sigFmt(nPerSqFt)} &times; ${coneArea} sq ft`,
-      sigFmt(nPerCone), 'lb N / cone'),
+    makeStep(8, 'N needed per application area',
+      `${sigFmt(nPerSqFt)} &times; ${coneArea_in} ${u.areaLabel}`,
+      sigFmt(nPerCone), 'lb N / application area'),
 
     makeStep(9, 'Biosolid fraction (decimal)',
       `${biosolidFraction}% &divide; 100`,
       sigFmt(biosolidFracDec), '(dimensionless)'),
 
-    makeStep(10, 'Application mass per cone',
+    makeStep(10, 'Application mass per application area',
       `(${sigFmt(nPerCone)} &divide; ${sigFmt(bioavailableNPerGram)}) &times; ${sigFmt(biosolidFracDec)}`,
-      fixedFmt(appMass_g, 4), 'g / cone'),
+      fixedFmt(appMass_g, 4), 'g / application area'),
   ].join('');
 }
 
@@ -282,10 +347,15 @@ function calcEgrow() {
     return;
   }
 
-  const totalNRate         = val('eg-totalNRate');
+  const u                  = unitConfig();
+  const totalNRate_in      = val('eg-totalNRate');
   const mineralizationRate = val('eg-mineralizationRate');
   const nContentBiosolid   = val('eg-nContentBiosolid');
-  const coneArea           = val('eg-coneArea');
+  const coneArea_in        = val('eg-coneArea');
+
+  // Convert to internal units (lb/acre, sq ft)
+  const totalNRate = totalNRate_in * u.rateFactor;
+  const coneArea   = coneArea_in   * u.areaFactor;
 
   const totalNRate_mgPerSqFt    = (totalNRate * 453592) / 43560;
   const biosolidFractionN       = totalSlurryN - ammoniaContent;
@@ -302,8 +372,8 @@ function calcEgrow() {
   flashResult('eg-result-val');
 
   el('eg-bd-body').innerHTML = [
-    makeStep(1, 'Total N rate in mg N per sq ft',
-      `(${totalNRate} lb/acre &times; 453,592 mg/lb) &divide; 43,560 sq ft/acre`,
+    makeStep(1, `Target N application rate in mg N / sq ft`,
+      `(${totalNRate_in} ${u.rateLabel} &times; ${u.massPerUnit.toLocaleString()} mg/${currentUnit === 'ha' ? 'kg' : 'lb'}) &divide; ${u.areaPerUnit.toLocaleString()} ${u.areaLabel}/${currentUnit}`,
       sigFmt(totalNRate_mgPerSqFt), 'mg N / sq ft'),
 
     makeStep(2, 'N from biosolid fraction of slurry',
@@ -322,7 +392,7 @@ function calcEgrow() {
       `${mineralizationRate}% &divide; 100`,
       sigFmt(mineralizationDec), '(dimensionless)'),
 
-    makeStep(6, 'N content of biosolid fraction (decimal)',
+    makeStep(6, 'Fertilizer N content of biosolid fraction (decimal)',
       `${nContentBiosolid}% &divide; 100`,
       sigFmt(nContentBiosolidDec), '(dimensionless)'),
 
@@ -334,13 +404,13 @@ function calcEgrow() {
       `${sigFmt(ammonia_mgPerML)} (ammonia) + ${sigFmt(mineralizedNPerML)} (mineralized)`,
       sigFmt(bioavailableNPerML), 'mg N / mL'),
 
-    makeStep(9, 'N needed per cone',
-      `${sigFmt(totalNRate_mgPerSqFt)} mg/sq ft &times; ${coneArea} sq ft`,
-      sigFmt(nNeededPerCone), 'mg N / cone'),
+    makeStep(9, 'N needed per application area',
+      `${sigFmt(totalNRate_mgPerSqFt)} mg/sq ft &times; ${coneArea_in} ${u.areaLabel}`,
+      sigFmt(nNeededPerCone), 'mg N / application area'),
 
-    makeStep(10, 'Application volume per cone',
+    makeStep(10, 'Application volume',
       `${sigFmt(nNeededPerCone)} &divide; ${sigFmt(bioavailableNPerML)}`,
-      fixedFmt(appVolume_mL, 4), 'mL / cone'),
+      fixedFmt(appVolume_mL, 4), 'mL / application area'),
   ].join('');
 }
 
@@ -384,12 +454,60 @@ document.querySelectorAll('.tab-btn').forEach(btn => {
   });
 });
 
+/* Unit toggle */
+document.querySelectorAll('.unit-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const newUnit = btn.dataset.unit;
+    if (newUnit === currentUnit) return;
+
+    const oldU = unitConfig();
+    currentUnit = newUnit;
+    const newU = unitConfig();
+
+    document.querySelectorAll('.unit-btn').forEach(b => {
+      b.classList.toggle('active', b.dataset.unit === currentUnit);
+    });
+
+    // Convert existing input values to new unit system
+    const rateIds = ['ino-totalNRate', 'bio-totalNRate', 'eg-totalNRate'];
+    const areaIds = ['ino-coneArea', 'bio-coneArea', 'eg-coneArea'];
+
+    rateIds.forEach(id => {
+      const input = el(id);
+      const v = parseFloat(input.value);
+      if (isFinite(v)) {
+        // Reverse old factor, apply new factor
+        const lb_acre = v * oldU.rateFactor;
+        input.value = parseFloat((lb_acre / newU.rateFactor).toPrecision(6));
+      }
+    });
+    areaIds.forEach(id => {
+      const input = el(id);
+      const v = parseFloat(input.value);
+      if (isFinite(v)) {
+        const sqft = v * oldU.areaFactor;
+        input.value = parseFloat((sqft / newU.areaFactor).toPrecision(4));
+      }
+    });
+
+    updateUnitLabels();
+    calcInorganic();
+    calcBiosolids();
+    calcEgrow();
+  });
+});
+
 /* Reset buttons */
 document.querySelectorAll('.btn-reset').forEach(btn => {
   btn.addEventListener('click', () => {
     const tab = btn.dataset.reset;
+    const u = unitConfig();
     Object.entries(DEFAULTS[tab]).forEach(([id, v]) => {
-      el(id).value = v;
+      // Convert rate and area defaults to current unit system
+      let converted = v;
+      if (id.endsWith('totalNRate')) converted = parseFloat((v / u.rateFactor).toPrecision(6));
+      if (id.endsWith('coneArea'))   converted = parseFloat((v / u.areaFactor).toPrecision(4));
+      el(id).value = converted;
       el(id).classList.remove('is-invalid');
     });
     CALCS[tab]();
@@ -406,7 +524,17 @@ document.querySelectorAll('.btn-reset').forEach(btn => {
 ['eg-totalNRate','eg-totalSlurryN','eg-ammoniaContent','eg-mineralizationRate','eg-nContentBiosolid','eg-coneArea']
   .forEach(id => el(id).addEventListener('input', calcEgrow));
 
-/* Initial calculation + open first breakdown */
+/* Soil section accordion */
+const soilToggle = el('soil-toggle');
+const soilBody   = el('soil-body');
+soilToggle.addEventListener('click', () => {
+  const open = soilBody.classList.toggle('is-open');
+  soilToggle.classList.toggle('is-open', open);
+  soilToggle.setAttribute('aria-expanded', String(open));
+});
+
+/* Initial render */
+updateUnitLabels();
 calcInorganic();
 calcBiosolids();
 calcEgrow();

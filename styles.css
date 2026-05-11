@@ -158,6 +158,127 @@ body {
 }
 
 /* ═══════════════════════════════════════════════
+   SOIL NUTRIENT BASELINE
+═══════════════════════════════════════════════ */
+.soil-section {
+  background: var(--surface);
+  border: 1.5px solid var(--border);
+  border-radius: var(--r-lg);
+  box-shadow: var(--shadow-xs);
+  margin-bottom: 14px;
+  overflow: hidden;
+}
+
+.soil-toggle {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 13px 18px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 0.83rem;
+  font-weight: 600;
+  color: var(--text-2);
+  transition: background 0.15s, color 0.15s;
+  text-align: left;
+}
+
+.soil-toggle:hover { background: var(--surface-2); color: var(--text); }
+.soil-toggle .chevron-icon { transition: transform 0.22s ease; opacity: 0.5; flex-shrink: 0; }
+.soil-toggle.is-open .chevron-icon { transform: rotate(180deg); }
+
+.soil-toggle-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.soil-toggle-title svg { color: #6b7280; flex-shrink: 0; }
+
+.soil-body {
+  display: none;
+  padding: 0 18px 16px;
+  border-top: 1px solid var(--border);
+}
+
+.soil-body.is-open { display: block; }
+
+.soil-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+  margin-top: 14px;
+}
+
+@media (max-width: 600px) {
+  .soil-grid { grid-template-columns: 1fr; }
+}
+
+.soil-note {
+  font-size: 0.72rem;
+  color: var(--text-3);
+  font-style: italic;
+  margin-top: 12px;
+  padding-top: 10px;
+  border-top: 1px solid var(--border);
+}
+
+/* ═══════════════════════════════════════════════
+   UNIT SELECTOR BAR
+═══════════════════════════════════════════════ */
+.unit-bar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 14px;
+  padding: 10px 16px;
+  background: var(--surface);
+  border: 1.5px solid var(--border);
+  border-radius: var(--r-lg);
+  box-shadow: var(--shadow-xs);
+}
+
+.unit-bar-label {
+  font-size: 0.77rem;
+  font-weight: 600;
+  color: var(--text-3);
+  white-space: nowrap;
+  letter-spacing: 0.02em;
+}
+
+.unit-toggle {
+  display: flex;
+  gap: 4px;
+  background: var(--bg);
+  border-radius: var(--r-sm);
+  padding: 3px;
+}
+
+.unit-btn {
+  padding: 6px 14px;
+  border: none;
+  border-radius: 6px;
+  background: transparent;
+  font-size: 0.78rem;
+  font-weight: 500;
+  color: var(--text-2);
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s, box-shadow 0.15s;
+  white-space: nowrap;
+}
+
+.unit-btn:hover:not(.active) { background: var(--surface); color: var(--text); }
+
+.unit-btn.active {
+  background: var(--surface);
+  color: var(--tt-red);
+  font-weight: 600;
+  box-shadow: var(--shadow-xs);
+}
+
+/* ═══════════════════════════════════════════════
    SEGMENTED TAB CONTROL
 ═══════════════════════════════════════════════ */
 .tab-control {
