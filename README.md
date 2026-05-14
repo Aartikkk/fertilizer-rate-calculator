@@ -43,15 +43,17 @@ Liquid organic slurry. Calculates application volume per application area (mL) b
 - **Reset to defaults** — one click restores all default values per tab
 - **Responsive** — works on desktop and mobile
 - **Print-friendly** — all three panels render cleanly via Ctrl+P
+- **TTU branding** — styled with official Texas Tech red/black color theme, Inter typography, and the official Double T logo
 
 ---
 
 ## File Structure
 
 ```
-├── index.html    # Page structure and markup
-├── styles.css    # All styling (layout, components, print, responsive)
-└── app.js        # Calculations, validation, and UI logic
+├── index.html      # Page structure and markup
+├── styles.css      # All styling (layout, components, print, responsive)
+├── app.js          # Calculations, validation, and UI logic
+└── DoubleT.png     # Official Texas Tech University Double T logo
 ```
 
 ---

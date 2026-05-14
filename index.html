@@ -4,6 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Fertilizer Application Rate Calculator — Texas Tech University</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -13,19 +16,97 @@
 ═══════════════════════════════════════════ -->
 <header class="site-header">
   <div class="header-inner">
-    <div class="header-badge" aria-hidden="true">
-      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="white"
-           stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+
+    <div class="header-brand">
+      <!-- Wheat / plant icon badge -->
+      <div class="header-icon" aria-hidden="true">
+        <svg width="34" height="34" viewBox="0 0 36 36" fill="none"
+             stroke="white" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+          <!-- stem -->
+          <line x1="18" y1="33" x2="18" y2="12"/>
+          <!-- top grain head -->
+          <path d="M18 12 C15.5 9.5 14 6.5 15 4 C16 2 18 2 18 2 C18 2 20 2 21 4 C22 6.5 20.5 9.5 18 12Z" fill="rgba(255,255,255,0.28)"/>
+          <!-- left grain pair -->
+          <path d="M18 17 C15 15.5 12.5 13.5 12 11 C11.5 8.5 13.5 7 15.5 8.5"/>
+          <!-- right grain pair -->
+          <path d="M18 17 C21 15.5 23.5 13.5 24 11 C24.5 8.5 22.5 7 20.5 8.5"/>
+          <!-- left lower grain -->
+          <path d="M18 22 C15 20.5 12.5 18.5 12 16 C11.5 14 13.5 12.5 15.5 14"/>
+          <!-- right lower grain -->
+          <path d="M18 22 C21 20.5 23.5 18.5 24 16 C24.5 14 22.5 12.5 20.5 14"/>
+          <!-- left bottom grain -->
+          <path d="M18 27 C15.5 25.5 13.5 23.5 13 21.5 C12.5 20 14 18.5 16 20"/>
+          <!-- right bottom grain -->
+          <path d="M18 27 C20.5 25.5 22.5 23.5 23 21.5 C23.5 20 22 18.5 20 20"/>
+        </svg>
+      </div>
+
+      <div class="header-text">
+        <span class="header-pretitle">Texas Tech University &mdash; Plant &amp; Soil Science</span>
+        <h1 class="header-title">Fertilizer Application Rate Calculator</h1>
+        <p class="header-subtitle">
+          Precision nutrient management for experimental plots &mdash; Dr.&nbsp;Haydee Laza&rsquo;s Lab
+        </p>
+      </div>
+    </div>
+
+    <!-- TTU Logo Badge — Official logo -->
+    <div class="header-ttu-badge" aria-label="Texas Tech University">
+      <img src="DoubleT.png" alt="Texas Tech University" class="ttu-logo-img"/>
+    </div>
+
+  </div><!-- /header-inner -->
+
+  <!-- Feature strip -->
+  <div class="header-feature-strip" aria-hidden="true">
+    <div class="feature-chip">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+           stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
         <path d="M9 3h6v7l3.5 6.5A2 2 0 0 1 17 19H7a2 2 0 0 1-1.5-2.5L9 10V3z"/>
         <line x1="6" y1="3" x2="18" y2="3"/>
       </svg>
+      3 Fertilizer Types
     </div>
-    <div>
-      <h1 class="header-title">Fertilizer Application Rate Calculator</h1>
-      <p class="header-subtitle">Texas Tech University &mdash; Department of Plant and Soil Science</p>
+    <span class="feature-divider" aria-hidden="true"></span>
+    <div class="feature-chip">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+           stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="10"/>
+        <circle cx="12" cy="12" r="3"/>
+        <line x1="12" y1="2" x2="12" y2="5"/>
+        <line x1="12" y1="19" x2="12" y2="22"/>
+        <line x1="2" y1="12" x2="5" y2="12"/>
+        <line x1="19" y1="12" x2="22" y2="12"/>
+      </svg>
+      Plot-Scale Precision
+    </div>
+    <span class="feature-divider" aria-hidden="true"></span>
+    <div class="feature-chip">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+           stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="8" y1="6" x2="21" y2="6"/>
+        <line x1="8" y1="12" x2="21" y2="12"/>
+        <line x1="8" y1="18" x2="21" y2="18"/>
+        <line x1="3" y1="6" x2="3.01" y2="6"/>
+        <line x1="3" y1="12" x2="3.01" y2="12"/>
+        <line x1="3" y1="18" x2="3.01" y2="18"/>
+      </svg>
+      Step-by-Step Breakdown
+    </div>
+    <span class="feature-divider" aria-hidden="true"></span>
+    <div class="feature-chip">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+           stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="17 1 21 5 17 9"/>
+        <path d="M3 11V9a4 4 0 0 1 4-4h14"/>
+        <polyline points="7 23 3 19 7 15"/>
+        <path d="M21 13v2a4 4 0 0 1-4 4H3"/>
+      </svg>
+      Imperial &amp; Metric Units
     </div>
   </div>
 </header>
+
 
 <!-- ═══════════════════════════════════════════
      MAIN
@@ -39,12 +120,16 @@
     <button class="soil-toggle is-open" id="soil-toggle" type="button"
             aria-expanded="true" aria-controls="soil-body">
       <span class="soil-toggle-title">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+        <!-- Soil/layers icon -->
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor"
              stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <path d="M12 2C8 2 4 6 4 10c0 5 8 12 8 12s8-7 8-12c0-4-4-8-8-8z"/>
-          <circle cx="12" cy="10" r="3"/>
+          <ellipse cx="12" cy="5" rx="9" ry="3"/>
+          <path d="M3 5v4c0 1.66 4.03 3 9 3s9-1.34 9-3V5"/>
+          <path d="M3 9v4c0 1.66 4.03 3 9 3s9-1.34 9-3V9"/>
+          <path d="M3 13v4c0 1.66 4.03 3 9 3s9-1.34 9-3v-4"/>
         </svg>
         Soil Nutrient Baseline
+        <span class="section-badge">Optional</span>
       </span>
       <svg class="chevron-icon" width="14" height="14" viewBox="0 0 24 24" fill="none"
            stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
@@ -57,39 +142,87 @@
       <div class="soil-grid">
         <div class="input-group">
           <label class="field-label" for="soil-totalN">
+            <span class="field-icon" aria-hidden="true">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                   stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 2v20M2 12h20"/>
+              </svg>
+            </span>
             Total N content
             <span class="field-unit">(%)</span>
           </label>
           <input type="number" id="soil-totalN" min="0" max="100" step="0.001"
-                 placeholder="e.g. 0.15">
+                 placeholder="e.g. 0.15" title="Total nitrogen content of soil sample (%)">
         </div>
         <div class="input-group">
           <label class="field-label" for="soil-nOrganic">
+            <span class="field-icon" aria-hidden="true">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                   stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M11 20A7 7 0 0 1 4 13c0-3.9 3.1-7 7-7h1V3s4 1 6 5c1 2 .5 5-.5 7-1.2 2.4-3.5 5-6.5 5z"/>
+              </svg>
+            </span>
             N-organic
             <span class="field-unit">(%)</span>
           </label>
           <input type="number" id="soil-nOrganic" min="0" max="100" step="0.001"
-                 placeholder="e.g. 0.12">
+                 placeholder="e.g. 0.12" title="Organic nitrogen fraction in soil (%)">
         </div>
         <div class="input-group">
           <label class="field-label" for="soil-nInorganic">
+            <span class="field-icon" aria-hidden="true">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                   stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M9 3h6v7l3.5 6.5A2 2 0 0 1 17 19H7a2 2 0 0 1-1.5-2.5L9 10V3z"/>
+                <line x1="6" y1="3" x2="18" y2="3"/>
+              </svg>
+            </span>
             N-inorganic
             <span class="field-unit">(%)</span>
           </label>
           <input type="number" id="soil-nInorganic" min="0" max="100" step="0.001"
-                 placeholder="e.g. 0.03">
+                 placeholder="e.g. 0.03" title="Inorganic nitrogen fraction in soil (%)">
         </div>
       </div>
-      <p class="soil-note">These baseline values will be incorporated into calculations in a future update.</p>
+      <p class="soil-note">
+        <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+             stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="12" cy="12" r="10"/>
+          <line x1="12" y1="8" x2="12" y2="12"/>
+          <line x1="12" y1="16" x2="12.01" y2="16"/>
+        </svg>
+        Baseline values will be incorporated into calculations in a future update.
+      </p>
     </div>
   </div>
 
   <!-- Unit selector -->
   <div class="unit-bar">
-    <span class="unit-bar-label">Area units:</span>
+    <span class="unit-bar-label">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+           stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <polyline points="17 1 21 5 17 9"/>
+        <path d="M3 11V9a4 4 0 0 1 4-4h14"/>
+        <polyline points="7 23 3 19 7 15"/>
+        <path d="M21 13v2a4 4 0 0 1-4 4H3"/>
+      </svg>
+      Area Units:
+    </span>
     <div class="unit-toggle" role="group" aria-label="Area unit system">
-      <button class="unit-btn active" data-unit="acre" type="button">Acre (lb/acre, sq ft)</button>
-      <button class="unit-btn" data-unit="ha" type="button">Hectare (kg/ha, sq m)</button>
+      <button class="unit-btn active" data-unit="acre" type="button">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+             stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <rect x="3" y="3" width="18" height="18" rx="2"/>
+        </svg>
+        Acre (lb/acre, sq ft)
+      </button>
+      <button class="unit-btn" data-unit="ha" type="button">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+             stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <rect x="3" y="3" width="18" height="18" rx="2"/>
+        </svg>
+        Hectare (kg/ha, sq m)
+      </button>
     </div>
   </div>
 
@@ -98,39 +231,45 @@
 
     <button class="tab-btn active" data-tab="inorganic"
             role="tab" aria-selected="true" aria-controls="panel-inorganic">
-      <!-- Flask icon -->
-      <svg class="tab-icon" width="16" height="16" viewBox="0 0 24 24" fill="none"
+      <svg class="tab-icon" width="18" height="18" viewBox="0 0 24 24" fill="none"
            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
            aria-hidden="true">
         <path d="M9 3h6v7l3.5 6.5A2 2 0 0 1 17 19H7a2 2 0 0 1-1.5-2.5L9 10V3z"/>
         <line x1="6" y1="3" x2="18" y2="3"/>
       </svg>
-      <span class="tab-label">Inorganic (UAN 32-0-0)</span>
+      <span class="tab-label-group">
+        <span class="tab-label">Inorganic</span>
+        <span class="tab-sublabel">UAN 32-0-0 (liquid)</span>
+      </span>
       <span class="tab-label-short">Inorganic</span>
     </button>
 
     <button class="tab-btn" data-tab="biosolids"
             role="tab" aria-selected="false" aria-controls="panel-biosolids">
-      <!-- Leaf icon -->
-      <svg class="tab-icon" width="16" height="16" viewBox="0 0 24 24" fill="none"
+      <svg class="tab-icon" width="18" height="18" viewBox="0 0 24 24" fill="none"
            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
            aria-hidden="true">
         <path d="M11 20A7 7 0 0 1 4 13c0-3.9 3.1-7 7-7h1V3s4 1 6 5c1 2 .5 5-.5 7-1.2 2.4-3.5 5-6.5 5z"/>
         <path d="M11 20c0-4 1-7 4-9"/>
       </svg>
-      <span class="tab-label">Biosolids</span>
+      <span class="tab-label-group">
+        <span class="tab-label">Biosolids</span>
+        <span class="tab-sublabel">Organic dry material</span>
+      </span>
       <span class="tab-label-short">Biosolids</span>
     </button>
 
     <button class="tab-btn" data-tab="egrow"
             role="tab" aria-selected="false" aria-controls="panel-egrow">
-      <!-- Droplet icon -->
-      <svg class="tab-icon" width="16" height="16" viewBox="0 0 24 24" fill="none"
+      <svg class="tab-icon" width="18" height="18" viewBox="0 0 24 24" fill="none"
            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
            aria-hidden="true">
         <path d="M12 2C6.5 9.5 4 13.5 4 17a8 8 0 0 0 16 0c0-3.5-2.5-7.5-8-15z"/>
       </svg>
-      <span class="tab-label">E-GROW Slurry</span>
+      <span class="tab-label-group">
+        <span class="tab-label">E-GROW</span>
+        <span class="tab-sublabel">Slurry (liquid+solid)</span>
+      </span>
       <span class="tab-label-short">E-GROW</span>
     </button>
 
@@ -146,12 +285,40 @@
     <div class="panel-accent-bar" aria-hidden="true"></div>
 
     <div class="panel-body">
+
+      <!-- Panel header -->
+      <div class="panel-header-row">
+        <div class="panel-type-badge inorganic-badge">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+               stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M9 3h6v7l3.5 6.5A2 2 0 0 1 17 19H7a2 2 0 0 1-1.5-2.5L9 10V3z"/>
+            <line x1="6" y1="3" x2="18" y2="3"/>
+          </svg>
+          UAN 32-0-0 &mdash; Liquid Inorganic Fertilizer
+        </div>
+        <div class="panel-formula-hint">
+          Output: <strong>mL applied per cone</strong>
+        </div>
+      </div>
+
       <div class="panel-grid">
 
         <!-- LEFT: Inputs -->
         <div>
           <div class="col-header">
             <span class="col-header-dot" aria-hidden="true"></span>
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                 stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <line x1="4" y1="21" x2="4" y2="14"/>
+              <line x1="4" y1="10" x2="4" y2="3"/>
+              <line x1="12" y1="21" x2="12" y2="12"/>
+              <line x1="12" y1="8" x2="12" y2="3"/>
+              <line x1="20" y1="21" x2="20" y2="16"/>
+              <line x1="20" y1="12" x2="20" y2="3"/>
+              <line x1="1" y1="14" x2="7" y2="14"/>
+              <line x1="9" y1="8" x2="15" y2="8"/>
+              <line x1="17" y1="16" x2="23" y2="16"/>
+            </svg>
             Input Parameters
           </div>
 
@@ -159,47 +326,87 @@
 
             <div class="input-group">
               <label class="field-label" for="ino-totalNRate">
+                <span class="field-icon" aria-hidden="true">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                       stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="18" y1="20" x2="18" y2="10"/>
+                    <line x1="12" y1="20" x2="12" y2="4"/>
+                    <line x1="6"  y1="20" x2="6"  y2="14"/>
+                  </svg>
+                </span>
                 Target N application rate
                 <span class="field-unit" data-unitlabel="rate">(lb N / acre)</span>
               </label>
-              <input type="number" id="ino-totalNRate" value="120" min="0" step="1">
+              <input type="number" id="ino-totalNRate" value="120" min="0" step="1"
+                     title="Target nitrogen application rate per unit area">
             </div>
 
             <div class="input-group">
               <label class="field-label" for="ino-fractionApplied">
-                Full target application (1) or split (1/3)
+                <span class="field-icon" aria-hidden="true">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                       stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="10"/>
+                    <path d="M8 12h8"/>
+                    <path d="M9 8l6 8"/>
+                  </svg>
+                </span>
+                Application fraction
                 <span class="field-unit">(0 &ndash; 1)</span>
               </label>
               <input type="number" id="ino-fractionApplied" value="0.33333"
-                     min="0.0001" max="1" step="0.00001">
+                     min="0.0001" max="1" step="0.00001"
+                     title="Proportion of total N rate applied at this planting. Full=1, one-third split≈0.333">
               <p class="field-note">Full application = 1 &nbsp;&bull;&nbsp; 1/3 split &asymp; 0.33333</p>
             </div>
 
             <div class="input-group">
               <label class="field-label" for="ino-nContentPerGallon">
+                <span class="field-icon" aria-hidden="true">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                       stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M9 3h6v7l3.5 6.5A2 2 0 0 1 17 19H7a2 2 0 0 1-1.5-2.5L9 10V3z"/>
+                    <line x1="6" y1="3" x2="18" y2="3"/>
+                  </svg>
+                </span>
                 Fertilizer N content
                 <span class="field-unit">(lb N / gallon)</span>
               </label>
               <input type="number" id="ino-nContentPerGallon" value="3.54"
-                     min="0.001" step="0.01">
+                     min="0.001" step="0.01"
+                     title="Nitrogen content per gallon of undiluted UAN solution">
             </div>
 
             <div class="input-group">
               <label class="field-label" for="ino-dilutionRatio">
+                <span class="field-icon" aria-hidden="true">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                       stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 2C6.5 9.5 4 13.5 4 17a8 8 0 0 0 16 0c0-3.5-2.5-7.5-8-15z"/>
+                  </svg>
+                </span>
                 Dilution factor
                 <span class="field-unit">(1 : X)</span>
               </label>
-              <input type="number" id="ino-dilutionRatio" value="250" min="1" step="1">
+              <input type="number" id="ino-dilutionRatio" value="250" min="1" step="1"
+                     title="Parts of water per 1 part UAN fertilizer">
               <p class="field-note">e.g. 250 = 1 part UAN per 250 parts water</p>
             </div>
 
             <div class="input-group">
               <label class="field-label" for="ino-coneArea">
-                Fertilizer Application Area
+                <span class="field-icon" aria-hidden="true">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                       stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="3" width="18" height="18" rx="1"/>
+                  </svg>
+                </span>
+                Fertilizer application area
                 <span class="field-unit" data-unitlabel="area">(sq ft)</span>
               </label>
               <input type="number" id="ino-coneArea" value="0.0135"
-                     min="0.0001" step="0.0001">
+                     min="0.0001" step="0.0001"
+                     title="Cross-sectional area of the application cone or plot zone">
             </div>
 
           </div><!-- /inputs-section -->
@@ -214,7 +421,16 @@
           </button>
 
           <div class="conversions-box" id="ino-conv-box">
-            <span class="conversions-box-label">Unit conversions used</span>
+            <span class="conversions-box-label">
+              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                   stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <polyline points="17 1 21 5 17 9"/>
+                <path d="M3 11V9a4 4 0 0 1 4-4h14"/>
+                <polyline points="7 23 3 19 7 15"/>
+                <path d="M21 13v2a4 4 0 0 1-4 4H3"/>
+              </svg>
+              Unit conversions used
+            </span>
             1 acre = 43,560 sq ft &nbsp;&bull;&nbsp;
             1 gallon = 3.78 L &nbsp;&bull;&nbsp;
             1 L = 1,000 mL
@@ -225,18 +441,41 @@
         <div>
           <div class="col-header">
             <span class="col-header-dot" aria-hidden="true"></span>
-            Result
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                 stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+            </svg>
+            Calculated Result
           </div>
 
           <div class="result-card" data-accent="inorganic">
+            <div class="result-card-bg-icon" aria-hidden="true">
+              <svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                   stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M9 3h6v7l3.5 6.5A2 2 0 0 1 17 19H7a2 2 0 0 1-1.5-2.5L9 10V3z"/>
+                <line x1="6" y1="3" x2="18" y2="3"/>
+              </svg>
+            </div>
             <div class="result-eyebrow">Application Volume per Cone</div>
             <div class="result-number" id="ino-result-val">&mdash;</div>
             <div class="result-unit-badge">mL / cone</div>
+            <div class="result-context">Diluted UAN solution per application zone</div>
           </div>
 
           <button class="breakdown-toggle" id="ino-bd-toggle" type="button"
                   aria-expanded="false" aria-controls="ino-bd-body">
-            Calculation Breakdown
+            <span class="breakdown-toggle-label">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                   stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <line x1="8" y1="6" x2="21" y2="6"/>
+                <line x1="8" y1="12" x2="21" y2="12"/>
+                <line x1="8" y1="18" x2="21" y2="18"/>
+                <line x1="3" y1="6" x2="3.01" y2="6"/>
+                <line x1="3" y1="12" x2="3.01" y2="12"/>
+                <line x1="3" y1="18" x2="3.01" y2="18"/>
+              </svg>
+              Calculation Breakdown
+            </span>
             <svg class="chevron-icon" width="14" height="14" viewBox="0 0 24 24" fill="none"
                  stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
                  stroke-linejoin="round" aria-hidden="true">
@@ -261,12 +500,39 @@
     <div class="panel-accent-bar" aria-hidden="true"></div>
 
     <div class="panel-body">
+
+      <div class="panel-header-row">
+        <div class="panel-type-badge biosolids-badge">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+               stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M11 20A7 7 0 0 1 4 13c0-3.9 3.1-7 7-7h1V3s4 1 6 5c1 2 .5 5-.5 7-1.2 2.4-3.5 5-6.5 5z"/>
+            <path d="M11 20c0-4 1-7 4-9"/>
+          </svg>
+          Biosolids &mdash; Organic Dry Material
+        </div>
+        <div class="panel-formula-hint">
+          Output: <strong>grams of biosolid per cone</strong>
+        </div>
+      </div>
+
       <div class="panel-grid">
 
         <!-- LEFT: Inputs -->
         <div>
           <div class="col-header">
             <span class="col-header-dot" aria-hidden="true"></span>
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                 stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <line x1="4" y1="21" x2="4" y2="14"/>
+              <line x1="4" y1="10" x2="4" y2="3"/>
+              <line x1="12" y1="21" x2="12" y2="12"/>
+              <line x1="12" y1="8" x2="12" y2="3"/>
+              <line x1="20" y1="21" x2="20" y2="16"/>
+              <line x1="20" y1="12" x2="20" y2="3"/>
+              <line x1="1" y1="14" x2="7" y2="14"/>
+              <line x1="9" y1="8" x2="15" y2="8"/>
+              <line x1="17" y1="16" x2="23" y2="16"/>
+            </svg>
             Input Parameters
           </div>
 
@@ -274,57 +540,103 @@
 
             <div class="input-group">
               <label class="field-label" for="bio-totalNRate">
+                <span class="field-icon" aria-hidden="true">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                       stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="18" y1="20" x2="18" y2="10"/>
+                    <line x1="12" y1="20" x2="12" y2="4"/>
+                    <line x1="6"  y1="20" x2="6"  y2="14"/>
+                  </svg>
+                </span>
                 Target N application rate
                 <span class="field-unit" data-unitlabel="rate">(lb N / acre)</span>
               </label>
-              <input type="number" id="bio-totalNRate" value="120" min="0" step="1">
+              <input type="number" id="bio-totalNRate" value="120" min="0" step="1"
+                     title="Target nitrogen application rate per unit area">
             </div>
 
             <div class="input-group">
               <label class="field-label" for="bio-nContentPercent">
+                <span class="field-icon" aria-hidden="true">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                       stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M11 20A7 7 0 0 1 4 13c0-3.9 3.1-7 7-7h1V3s4 1 6 5c1 2 .5 5-.5 7-1.2 2.4-3.5 5-6.5 5z"/>
+                  </svg>
+                </span>
                 Fertilizer N content
                 <span class="field-unit">(%)</span>
               </label>
               <input type="number" id="bio-nContentPercent" value="3.776"
-                     min="0.001" max="100" step="0.001">
+                     min="0.001" max="100" step="0.001"
+                     title="Total nitrogen content of biosolid material by dry weight (%)">
             </div>
 
             <div class="input-group">
               <label class="field-label" for="bio-mineralizationRate">
+                <span class="field-icon" aria-hidden="true">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                       stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4"/>
+                  </svg>
+                </span>
                 N mineralization rate &mdash; Year 1
                 <span class="field-unit">(%)</span>
               </label>
               <input type="number" id="bio-mineralizationRate" value="30"
-                     min="0.1" max="100" step="1">
+                     min="0.1" max="100" step="1"
+                     title="Percentage of organic N mineralized and plant-available in Year 1">
             </div>
 
             <div class="input-group">
               <label class="field-label" for="bio-biosolidFraction">
+                <span class="field-icon" aria-hidden="true">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                       stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
+                  </svg>
+                </span>
                 Biosolid fraction
                 <span class="field-unit">(%)</span>
               </label>
               <input type="number" id="bio-biosolidFraction" value="95"
-                     min="0.1" max="100" step="1">
+                     min="0.1" max="100" step="1"
+                     title="Proportion of the material that is biosolid by weight (default 95%)">
               <p class="field-note">Biosolids are 95% bio-solid by weight (default)</p>
             </div>
 
             <div class="input-group">
               <label class="field-label" for="bio-nAppliedFraction">
-                Full target application (1) or split (1/3)
+                <span class="field-icon" aria-hidden="true">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                       stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="10"/>
+                    <path d="M8 12h8"/>
+                    <path d="M9 8l6 8"/>
+                  </svg>
+                </span>
+                Application fraction
                 <span class="field-unit">(0 &ndash; 1)</span>
               </label>
               <input type="number" id="bio-nAppliedFraction" value="1.0"
-                     min="0.001" max="1" step="0.01">
+                     min="0.001" max="1" step="0.01"
+                     title="Proportion of total N rate applied. Full=1, one-third split≈0.333">
               <p class="field-note">Full application = 1 &nbsp;&bull;&nbsp; 1/3 split &asymp; 0.33333</p>
             </div>
 
             <div class="input-group">
               <label class="field-label" for="bio-coneArea">
-                Fertilizer Application Area
+                <span class="field-icon" aria-hidden="true">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                       stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="3" width="18" height="18" rx="1"/>
+                  </svg>
+                </span>
+                Fertilizer application area
                 <span class="field-unit" data-unitlabel="area">(sq ft)</span>
               </label>
               <input type="number" id="bio-coneArea" value="0.0135"
-                     min="0.0001" step="0.0001">
+                     min="0.0001" step="0.0001"
+                     title="Cross-sectional area of the application zone">
             </div>
 
           </div><!-- /inputs-section -->
@@ -339,7 +651,16 @@
           </button>
 
           <div class="conversions-box" id="bio-conv-box">
-            <span class="conversions-box-label">Unit conversions used</span>
+            <span class="conversions-box-label">
+              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                   stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <polyline points="17 1 21 5 17 9"/>
+                <path d="M3 11V9a4 4 0 0 1 4-4h14"/>
+                <polyline points="7 23 3 19 7 15"/>
+                <path d="M21 13v2a4 4 0 0 1-4 4H3"/>
+              </svg>
+              Unit conversions used
+            </span>
             1 acre = 43,560 sq ft &nbsp;&bull;&nbsp;
             1 ton = 2,000 lb &nbsp;&bull;&nbsp;
             1 ton = 907,185 g
@@ -350,18 +671,41 @@
         <div>
           <div class="col-header">
             <span class="col-header-dot" aria-hidden="true"></span>
-            Result
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                 stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+            </svg>
+            Calculated Result
           </div>
 
           <div class="result-card" data-accent="biosolids">
+            <div class="result-card-bg-icon" aria-hidden="true">
+              <svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                   stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M11 20A7 7 0 0 1 4 13c0-3.9 3.1-7 7-7h1V3s4 1 6 5c1 2 .5 5-.5 7-1.2 2.4-3.5 5-6.5 5z"/>
+                <path d="M11 20c0-4 1-7 4-9"/>
+              </svg>
+            </div>
             <div class="result-eyebrow">Application Mass per Cone</div>
             <div class="result-number" id="bio-result-val">&mdash;</div>
             <div class="result-unit-badge">grams of biosolid / cone</div>
+            <div class="result-context">Dry biosolid material per application zone</div>
           </div>
 
           <button class="breakdown-toggle" id="bio-bd-toggle" type="button"
                   aria-expanded="false" aria-controls="bio-bd-body">
-            Calculation Breakdown
+            <span class="breakdown-toggle-label">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                   stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <line x1="8" y1="6" x2="21" y2="6"/>
+                <line x1="8" y1="12" x2="21" y2="12"/>
+                <line x1="8" y1="18" x2="21" y2="18"/>
+                <line x1="3" y1="6" x2="3.01" y2="6"/>
+                <line x1="3" y1="12" x2="3.01" y2="12"/>
+                <line x1="3" y1="18" x2="3.01" y2="18"/>
+              </svg>
+              Calculation Breakdown
+            </span>
             <svg class="chevron-icon" width="14" height="14" viewBox="0 0 24 24" fill="none"
                  stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
                  stroke-linejoin="round" aria-hidden="true">
@@ -386,12 +730,38 @@
     <div class="panel-accent-bar" aria-hidden="true"></div>
 
     <div class="panel-body">
+
+      <div class="panel-header-row">
+        <div class="panel-type-badge egrow-badge">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+               stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M12 2C6.5 9.5 4 13.5 4 17a8 8 0 0 0 16 0c0-3.5-2.5-7.5-8-15z"/>
+          </svg>
+          E-GROW Slurry &mdash; Liquid + Solid Mixture
+        </div>
+        <div class="panel-formula-hint">
+          Output: <strong>mL applied per cone</strong>
+        </div>
+      </div>
+
       <div class="panel-grid">
 
         <!-- LEFT: Inputs -->
         <div>
           <div class="col-header">
             <span class="col-header-dot" aria-hidden="true"></span>
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                 stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <line x1="4" y1="21" x2="4" y2="14"/>
+              <line x1="4" y1="10" x2="4" y2="3"/>
+              <line x1="12" y1="21" x2="12" y2="12"/>
+              <line x1="12" y1="8" x2="12" y2="3"/>
+              <line x1="20" y1="21" x2="20" y2="16"/>
+              <line x1="20" y1="12" x2="20" y2="3"/>
+              <line x1="1" y1="14" x2="7" y2="14"/>
+              <line x1="9" y1="8" x2="15" y2="8"/>
+              <line x1="17" y1="16" x2="23" y2="16"/>
+            </svg>
             Input Parameters
           </div>
 
@@ -399,54 +769,99 @@
 
             <div class="input-group">
               <label class="field-label" for="eg-totalNRate">
+                <span class="field-icon" aria-hidden="true">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                       stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="18" y1="20" x2="18" y2="10"/>
+                    <line x1="12" y1="20" x2="12" y2="4"/>
+                    <line x1="6"  y1="20" x2="6"  y2="14"/>
+                  </svg>
+                </span>
                 Target N application rate
                 <span class="field-unit" data-unitlabel="rate">(lb N / acre)</span>
               </label>
-              <input type="number" id="eg-totalNRate" value="120" min="0" step="1">
+              <input type="number" id="eg-totalNRate" value="120" min="0" step="1"
+                     title="Target nitrogen application rate per unit area">
             </div>
 
             <div class="input-group">
               <label class="field-label" for="eg-totalSlurryN">
+                <span class="field-icon" aria-hidden="true">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                       stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 2C6.5 9.5 4 13.5 4 17a8 8 0 0 0 16 0c0-3.5-2.5-7.5-8-15z"/>
+                  </svg>
+                </span>
                 Total slurry N &mdash; Kjeldahl
                 <span class="field-unit">(mg / L)</span>
               </label>
-              <input type="number" id="eg-totalSlurryN" value="45600" min="0.1" step="1">
+              <input type="number" id="eg-totalSlurryN" value="45600" min="0.1" step="1"
+                     title="Total Kjeldahl nitrogen in the slurry (mg/L). Includes organic + ammonia N.">
             </div>
 
             <div class="input-group">
               <label class="field-label" for="eg-ammoniaContent">
+                <span class="field-icon" aria-hidden="true">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                       stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="10"/>
+                    <path d="M12 8v4l3 3"/>
+                  </svg>
+                </span>
                 Total ammonia content (water fraction)
                 <span class="field-unit">(mg / L)</span>
               </label>
-              <input type="number" id="eg-ammoniaContent" value="214" min="0" step="1">
+              <input type="number" id="eg-ammoniaContent" value="214" min="0" step="1"
+                     title="Ammonia N in the liquid fraction of the slurry (must be ≤ total slurry N)">
               <p class="field-note">Must be &le; total slurry N</p>
             </div>
 
             <div class="input-group">
               <label class="field-label" for="eg-mineralizationRate">
+                <span class="field-icon" aria-hidden="true">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                       stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4"/>
+                  </svg>
+                </span>
                 N mineralization rate &mdash; Year 1
                 <span class="field-unit">(%)</span>
               </label>
               <input type="number" id="eg-mineralizationRate" value="40"
-                     min="0.1" max="100" step="1">
+                     min="0.1" max="100" step="1"
+                     title="Percentage of biosolid-fraction organic N mineralized in Year 1">
             </div>
 
             <div class="input-group">
               <label class="field-label" for="eg-nContentBiosolid">
+                <span class="field-icon" aria-hidden="true">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                       stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
+                  </svg>
+                </span>
                 N content of biosolid fraction
                 <span class="field-unit">(%)</span>
               </label>
               <input type="number" id="eg-nContentBiosolid" value="6"
-                     min="0.001" max="100" step="0.1">
+                     min="0.001" max="100" step="0.1"
+                     title="Nitrogen content of the solid biosolid portion of the slurry (%)">
             </div>
 
             <div class="input-group">
               <label class="field-label" for="eg-coneArea">
-                Fertilizer Application Area
+                <span class="field-icon" aria-hidden="true">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                       stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="3" width="18" height="18" rx="1"/>
+                  </svg>
+                </span>
+                Fertilizer application area
                 <span class="field-unit" data-unitlabel="area">(sq ft)</span>
               </label>
               <input type="number" id="eg-coneArea" value="0.0135"
-                     min="0.0001" step="0.0001">
+                     min="0.0001" step="0.0001"
+                     title="Cross-sectional area of the application zone">
             </div>
 
           </div><!-- /inputs-section -->
@@ -461,7 +876,16 @@
           </button>
 
           <div class="conversions-box" id="eg-conv-box">
-            <span class="conversions-box-label">Conversion constants (fixed)</span>
+            <span class="conversions-box-label">
+              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                   stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <polyline points="17 1 21 5 17 9"/>
+                <path d="M3 11V9a4 4 0 0 1 4-4h14"/>
+                <polyline points="7 23 3 19 7 15"/>
+                <path d="M21 13v2a4 4 0 0 1-4 4H3"/>
+              </svg>
+              Conversion constants (fixed)
+            </span>
             1 lb = 453,592 mg &nbsp;&bull;&nbsp;
             1 acre = 43,560 sq ft &nbsp;&bull;&nbsp;
             1 L = 1,000 mL
@@ -472,18 +896,40 @@
         <div>
           <div class="col-header">
             <span class="col-header-dot" aria-hidden="true"></span>
-            Result
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                 stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+            </svg>
+            Calculated Result
           </div>
 
           <div class="result-card" data-accent="egrow">
+            <div class="result-card-bg-icon" aria-hidden="true">
+              <svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                   stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 2C6.5 9.5 4 13.5 4 17a8 8 0 0 0 16 0c0-3.5-2.5-7.5-8-15z"/>
+              </svg>
+            </div>
             <div class="result-eyebrow">Application Volume per Cone</div>
             <div class="result-number" id="eg-result-val">&mdash;</div>
             <div class="result-unit-badge">mL / cone</div>
+            <div class="result-context">E-GROW slurry volume per application zone</div>
           </div>
 
           <button class="breakdown-toggle" id="eg-bd-toggle" type="button"
                   aria-expanded="false" aria-controls="eg-bd-body">
-            Calculation Breakdown
+            <span class="breakdown-toggle-label">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                   stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <line x1="8" y1="6" x2="21" y2="6"/>
+                <line x1="8" y1="12" x2="21" y2="12"/>
+                <line x1="8" y1="18" x2="21" y2="18"/>
+                <line x1="3" y1="6" x2="3.01" y2="6"/>
+                <line x1="3" y1="12" x2="3.01" y2="12"/>
+                <line x1="3" y1="18" x2="3.01" y2="18"/>
+              </svg>
+              Calculation Breakdown
+            </span>
             <svg class="chevron-icon" width="14" height="14" viewBox="0 0 24 24" fill="none"
                  stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
                  stroke-linejoin="round" aria-hidden="true">
@@ -505,9 +951,33 @@
      FOOTER
 ═══════════════════════════════════════════ -->
 <footer class="site-footer">
-  Developed for <strong>Dr. Haydee Laza&rsquo;s Lab</strong>
-  &nbsp;&bull;&nbsp;
-  Texas Tech University
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <svg width="20" height="20" viewBox="0 0 36 36" fill="none"
+           stroke="var(--tt-red)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"
+           aria-hidden="true">
+        <line x1="18" y1="33" x2="18" y2="12"/>
+        <path d="M18 12 C15.5 9.5 14 6.5 15 4 C16 2 18 2 18 2 C18 2 20 2 21 4 C22 6.5 20.5 9.5 18 12Z" fill="rgba(204,0,0,0.3)"/>
+        <path d="M18 17 C15 15.5 12.5 13.5 12 11 C11.5 8.5 13.5 7 15.5 8.5"/>
+        <path d="M18 17 C21 15.5 23.5 13.5 24 11 C24.5 8.5 22.5 7 20.5 8.5"/>
+        <path d="M18 22 C15 20.5 12.5 18.5 12 16 C11.5 14 13.5 12.5 15.5 14"/>
+        <path d="M18 22 C21 20.5 23.5 18.5 24 16 C24.5 14 22.5 12.5 20.5 14"/>
+      </svg>
+      <span>Fertilizer Rate Calculator</span>
+    </div>
+
+    <div class="footer-info">
+      Developed for <strong>Dr.&nbsp;Haydee Laza&rsquo;s Lab</strong>
+      &nbsp;&bull;&nbsp;
+      Texas Tech University
+      <br>
+      Department of Plant and Soil Science
+    </div>
+
+    <div class="footer-meta">
+      &copy; 2025 Texas Tech University
+    </div>
+  </div>
 </footer>
 
 <script src="app.js"></script>
